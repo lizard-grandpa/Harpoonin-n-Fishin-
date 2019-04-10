@@ -11,7 +11,7 @@ move_right = keyboard_check(vk_right);
 move_up	   = keyboard_check(vk_up);
 move_down  = keyboard_check(vk_down);
 
-// ------	UPDATE CRAB SPEED
+// ------ UPDATE CRAB SPEED
 if(fastSwimSpeed) { swimSpeed = fastSwimSpeed; } // if user holds ctrl key, player's movement is faster
 else		 {swimSpeed = regularSwimSpeed; }
 
@@ -20,7 +20,7 @@ xPosition = 0;
 yPosition = 0;
 
 
-// ------- INTENDED MOVEMENT / MOVEMENT DOES CANCEL EACHOTHER OUT 
+// ------- INTENDED MOVEMENT / OPPOSITE KEYS CAN CANCEL EACHOTHER OUT / 8-DIRECTIONAL MOVEMENT 
 xPosition = (move_right - move_left) * swimSpeed;
 yPosition = (move_down - move_up) * swimSpeed; 
 
@@ -40,7 +40,7 @@ if(yPosition !=0){
 	if(place_meeting(x, y + yPosition, obj_rock)){
 		repeat(abs(yPosition)){
 			if(!place_meeting(x, y + sign(yPosition), obj_rock)) { y += sign(yPosition); }
-			else { break; } //  loop ends once palyer's intended yPosition + or - 1, collides w/ obj_rock
+			else { break; } //  loop ends once palyer's intended y Position + or - 1, collides w/ obj_rock
 		}
 		yPosition = 0;      // y movement is stopped 
 	}
