@@ -28,11 +28,11 @@ yPosition = (move_down - move_up) * swimSpeed;
 // horizontal
 if(xPosition != 0){
 	if(place_meeting(x + xPosition, y, obj_rock)){ // checks if player's x & y position collides w/ obj_rock's collision mask
-		repeat(abs(xPosition)){					   // repeating for the absolute value amount of xPosition 
+		repeat(abs(xPosition)){		       // repeating for the absolute value amount of xPosition 
 			if(!place_meeting(x + sign(xPosition), y ,obj_rock)) { x += sign(xPosition); } 
-			else{ break; }						   //  loop ends once player's intended xPosition + or - 1, collides w/ obj_rock
+			else{ break; }	//  loop ends once player's intended xPosition + or - 1, collides w/ obj_rock
 		}
-		xPosition = 0;							   // x movement is stopped  
+		xPosition = 0;	        // x movement is stopped  
 	}
 }
 // vertical
@@ -42,7 +42,7 @@ if(yPosition !=0){
 			if(!place_meeting(x, y + sign(yPosition), obj_rock)) { y += sign(yPosition); }
 			else { break; } //  loop ends once palyer's intended y Position + or - 1, collides w/ obj_rock
 		}
-		yPosition = 0;      // y movement is stopped 
+		yPosition = 0;          // y movement is stopped 
 	}
 }
 
