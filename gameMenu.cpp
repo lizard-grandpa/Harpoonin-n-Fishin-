@@ -2,6 +2,7 @@
 menuX = x;
 menuY = y;
 buttonHeight = 64;
+titleHeight = -150;
 
 // ------- create menu buttons array 
 button[0] = "Start";
@@ -27,7 +28,15 @@ if(menuIndex > (buttons - 1))	{ menuIndex = 0; }
 lastSelected = menuIndex;
 
 // ******** DRAW EVENT ********
-var i = 0;
+// ------- drawing title
+draw_set_font(f_2);
+draw_set_halign(fa_center);
+draw_set_color(c_teal);
+draw_text(menuX, menuY + titleHeight, "Harpoon' n' Fishin'");
+
+// ------ drawing menu buttons
+
+var i = 0; // "i" will be used to loop through the button array 
 
 repeat(buttons){
 	draw_set_font(f_1);         // f_1 the name i chose for a custom font that can be changed, font size is 32
