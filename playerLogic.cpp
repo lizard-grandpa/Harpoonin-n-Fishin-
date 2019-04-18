@@ -59,6 +59,28 @@ if(yPosition !=0){
 	}
 }
 
+// ------- COLLISION CHECK WITH ROOM BORDER
+// horizontal
+if(xPosition != 0){
+	if(place_meeting(x + xPosition, y, obj_border)){ // checks if craboo's x & y position collides w/ obj_rock's collision mask
+		repeat(abs(xPosition)){					   // repeating for the absolute value amount of xPosition 
+			if(!place_meeting(x + sign(xPosition), y ,obj_border)) { x += sign(xPosition); } 
+			else{ break; }						   //  loop ends once craboo's intended xPosition + or - 1, collides w/ obj_rock
+		}
+		xPosition = 0;							   // x movement is stopped  
+	}
+}
+// vertical
+if(yPosition !=0){
+	if(place_meeting(x, y + yPosition, obj_border)){
+		repeat(abs(yPosition)){
+			if(!place_meeting(x, y + sign(yPosition), obj_border)) { y += sign(yPosition); }
+			else { break; } //  loop ends once craboo's intended yPosition + or - 1, collides w/ obj_rock
+		}
+		yPosition = 0;      // y movement is stopped 
+	}
+}
+
 // ------- UPDATE USER MOVEMENT
 x += xPosition;
 y += yPosition;
