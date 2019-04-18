@@ -22,8 +22,7 @@ menuIndex += menuMove;
 if(menuIndex < 0)				{ menuIndex = buttons - 1; }
 if(menuIndex > (buttons - 1))	{ menuIndex = 0; }
 
-// if(menuIndex != lastSelected){ audio_play_sound(soundName, 1, false); }
-// if we decide to use audio for each button switch ^ also "false" can be changed to "true" if we want it to loop
+if(menuIndex != lastSelected){ audio_play_sound(s_menuSelect, 1, false); } // plays button switch audio in the menu 
 
 lastSelected = menuIndex;
 
