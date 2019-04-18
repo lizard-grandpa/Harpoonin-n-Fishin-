@@ -1,56 +1,51 @@
 // ************* CREATE EVENT *************
-fishSpeed = 1; // can be changed later 
+fishSpeed = .85; // fish speed can be changed 
 
-xPosition = 0; // fish wont be moving at the start of the game, can be changed later 
+xPosition = 0;   // x & y position of fish - not moving 
 yPosition = 0;
 
-alarm[1] = room_speed; //  alarm 1 will go off at room_speed = 60 frames = 1 second 
+alarm[1] = 1; // fish begin moving 1 step after game starts 
 
 // ************* STEP EVENT ************* 
-// ------- COLLISION CHECK
-// horizontal
-if(xPosition != 0){
-	if(place_meeting(x + xPosition, y, obj_rock)){ // checks if fish's x & y collides w/ obj_rock's collision mask
-		repeat(abs(xPosition)){					             // repeating for the absolute value amount of xPosition 
-			if(!place_meeting(x + sign(xPosition), y ,obj_rock)) { x += sign(xPosition); } 
-			else{ break; }	//  loop ends once fish's intended xPosition + or - 1, collides w/ obj_rock
-		}
-		xPosition = 0;	  // x movement is stopped  
-	}
+// ------- CHECKS PLAYER DISTANCE TO FISH 
+if(distance_to_object(instance_nearest(x,y,obj_player)) <= 25){
+	move_towards_point(instance_nearest(x,y,obj_border).x, instance_nearest(x,y,obj_border).y,0.95);	
 }
-// vertical
-if(yPosition !=0){
-	if(place_meeting(x, y + yPosition, obj_rock)){
-		repeat(abs(yPosition)){
-			if(!place_meeting(x, y + sign(yPosition), obj_rock)) { y += sign(yPosition); }
-			else { break; } //  loop ends once fish's intended yPosition + or - 1, collides w/ obj_rock
-		}
-		yPosition = 0;    // y movement is stopped 
-	}
-}
+// !!!! needs alot of work --- NOTES BELOW:
+// * cancel out alarm [1] or later it's movement maybe create a bool to trigger a different movement & adjust speed 
+// * fish seem to swim to obj_border closest to em but adjust it to make sure
+// * maybe add speed into the if statement above to force player to have more stealth, option for later tho 
 
-// ------ UPDATE MOVEMENT
+
+// ------- UPDATE FISH'S MOVEMENT 
 x += xPosition;
 y += yPosition;
 
 // ************* ALARM 1  *************
 
-xPosition = 0; //  we reset the fish to stop moving
+xPosition = 0;
 yPosition = 0;
 
-var idle = choose(0,1); // randomly choose between 0 & 1
-if(idle == false){      // if it chooses "0", the fish may randomly move up, down, left or right, if it chooses "1" the fish idles 
-	var dir = choose(1,2,3,4);
+var alive = true;
+if(alive){
+	var dir = choose (1,2);//choose(1,2,3,4);
 	switch(dir){
 		case 1:
-			xPosition = -fishSpeed; break;
+			xPosition = -fishSpeed;
+			yPosition = fishSpeed;
+			break;
 		case 2:
-			xPosition = fishSpeed; break;
-		case 3:
-			yPosition = -fishSpeed; break;
-		case 4: 
-			yPosition = fishSpeed; break;
+			xPosition = -fishSpeed;
+			yPosition = -fishSpeed;
+			break;
+		//case 3:
+		//	yPosition = -fishSpeed; break;
+		//case 4: 
+		//	yPosition = fishSpeed; break;		
 	}
 }
 
-alarm[1] = random_range(2.5, 4) * room_speed; //  the alarm goes off again at a random # between 2.5 to 4 times 60: so most likey 2-4 seconds
+alarm[1] = random_range(20, 35);
+
+// ******** OUTSIDE ROOM EVENT ********
+instance_destroy();
