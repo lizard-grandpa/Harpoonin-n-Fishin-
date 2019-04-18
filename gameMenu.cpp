@@ -39,7 +39,7 @@ draw_text(menuX, menuY + titleHeight, "Harpoon' n' Fishin'");
 var i = 0; // "i" will be used to loop through the button array 
 
 repeat(buttons){
-	draw_set_font(f_1);         // f_1 the name i chose for a custom font that can be changed, font size is 32
+	draw_set_font(f_1);         // f_1 the name i chose for a custom font that can be changed, font size is 70 in Gabriola
 	draw_set_halign(fa_center); // centers the text 
 	draw_set_color(c_teal);     // sets the color of the font 
 	if(menuIndex == i)	{ draw_set_color(c_black); }
