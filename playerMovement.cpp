@@ -7,10 +7,10 @@ diagonalSpeed = round(swimSpeed * ((sqrt(2))/2)); // due to the pythagorean theo
 // *********STEP EVENT**********
 fastSwimSpeed   = keyboard_check(vk_control); // speed variable check
 
-move_left  = keyboard_check(vk_left);   // stored in move variables for collision checks
-move_right = keyboard_check(vk_right);
-move_up	   = keyboard_check(vk_up);
-move_down  = keyboard_check(vk_down);
+move_left  = keyboard_check(ord("A"));        // stored in move variables for collision checks
+move_right = keyboard_check(ord("D"));
+move_up	   = keyboard_check(ord("W"));
+move_down  = keyboard_check(ord("S"));
 
 // ------ UPDATE CRAB SPEED
 if(fastSwimSpeed) { swimSpeed = fastSwimSpeed; } // if user holds ctrl key, player's movement is faster
@@ -22,8 +22,8 @@ yPosition = 0;
 
 
 // ------- INTENDED MOVEMENT / OPPOSITE KEYS CAN CANCEL EACHOTHER OUT / 8-DIRECTIONAL MOVEMENT 
-xPosition = (move_right - move_left);
-yPosition = (move_down - move_up); 
+xPosition = move_right - move_left; // constantly checks for which key is pressed, x-wise
+yPosition = move_down - move_up;    // constantly checks for which key is pressed, y-wise 
 
 if(xPosition != 0 && yPosition != 0)  // checks for diagonal movement to adjust speed
 { 
