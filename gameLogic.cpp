@@ -1,3 +1,10 @@
+// ******* X AND Y COORDINATES ******* 
+/*
+rm_game:
+	obj_pause = (512, 364)
+	obj_options = (512,364)
+*/
+
 // *********** CREATE EVENT **********
 randomize();      // ensures "random" functions appear random at every run of the game kinda like "srand(time(0));" in c++
 room_goto_next(); // goes to the next room of the game 
