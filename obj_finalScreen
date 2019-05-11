@@ -1,3 +1,9 @@
+// ******* X AND Y COORDINATES ******* 
+/*
+rm_end
+	obj_finalScreen = (512,224)
+*/
+
 // ******* CREATE EVENT ******
 
 // the x should be , the y should be , and the object should be placed on rm_end
