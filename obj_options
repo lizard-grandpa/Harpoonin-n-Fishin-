@@ -1,0 +1,80 @@
+// ******** CREATE EVENT ********
+
+pauseX = x;
+pauseY = y;
+buttonHeight = 64;
+titleHeight = -150;
+
+button[0] = "Work in Progress";
+buttons = array_length_1d(button);
+
+pauseIndex = 0;
+lastSelected = 0;
+yAdjust = -100;
+
+
+// ******** STEP EVENT ********
+
+menuMove = keyboard_check_pressed(vk_down) - keyboard_check_pressed(vk_up);
+
+if (room == rm_menu){
+	instance_deactivate_object(obj_options);
+}
+pauseIndex += menuMove;
+if(pauseIndex < 0)				{ pauseIndex = buttons - 1; }
+if(pauseIndex > (buttons - 1))	{ pauseIndex = 0; }
+
+
+// ******** KEY PRESS: ENTER EVENT ********
+
+switch(pauseIndex){
+	case 0:
+		instance_activate_object(obj_pause);
+		obj_options.visible = false;
+		obj_pause.visible = true;
+		instance_deactivate_object(obj_options);
+		break;
+}
+
+
+// ******** KEY PRESS: ESCAPE EVENT ********
+
+	obj_options.visible = false;
+	instance_activate_object(obj_pause);
+	obj_pause.visible = true;
+	instance_deactivate_object(obj_options);
+
+
+// ******** DRAW GUI EVENT ********
+
+var i = 0;
+
+draw_set_colour(c_black);
+draw_set_alpha(0.75);
+draw_rectangle(pauseX - 200, pauseY + 300, pauseX + 200, pauseY - 300, false);
+draw_set_alpha(1);
+
+draw_set_color(make_color_rgb(0, 170, 165));
+draw_line_width(pauseX - 200, pauseY + 300, pauseX - 200, pauseY - 300, 3);
+draw_line_width(pauseX + 200, pauseY + 300, pauseX + 200, pauseY - 300, 3);
+draw_line_width(pauseX - 200, pauseY + 300, pauseX + 200, pauseY + 300, 3);
+draw_line_width(pauseX - 200, pauseY - 300, pauseX + 200, pauseY - 300, 3);
+
+draw_set_font(f_2);
+draw_set_halign(fa_center);
+draw_set_color(make_color_rgb(0, 100, 95));
+draw_text(pauseX, pauseY + titleHeight + yAdjust, "Options");
+
+repeat(buttons){
+	draw_set_font(f_1);
+	draw_set_halign(fa_center);
+	draw_set_color(make_color_rgb(0, 100, 95));
+	if(pauseIndex == i)	{ draw_set_color(make_color_rgb(0, 170, 165)); }
+	draw_text(pauseX, pauseY + (buttonHeight * i) , button[i]);
+	i++
+}
+
+draw_set_font(f_1);
+draw_set_halign(fa_center);
+draw_set_color(c_white);
+draw_text_transformed_colour(pauseX, pauseY + (buttonHeight * i + 100), "press ENTER to return", .75, .75, 0, make_color_rgb(0, 170, 165), make_color_rgb(0, 170, 165), make_color_rgb(0, 170, 165), make_color_rgb(0, 170, 165), .75);
