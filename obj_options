@@ -1,3 +1,9 @@
+// ******* X AND Y COORDINATES ******* 
+/*
+rm_game:
+	obj_options = (512, 364)
+*/
+
 // ******** CREATE EVENT ********
 
 pauseX = x;
