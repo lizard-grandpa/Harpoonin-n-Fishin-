@@ -28,9 +28,21 @@ lastSelected = menuIndex;
 
 // ******** DRAW EVENT ********
 // ------- drawing title
+draw_set_colour(c_black);
+draw_set_alpha(0.75);
+draw_rectangle(menuX - 290, menuY + 350, menuX + 290, menuY - 150, false);
+draw_set_alpha(1);
+
+draw_set_color(make_color_rgb(0, 170, 165));
+draw_line_width(menuX - 290, menuY + 350, menuX - 290, menuY - 150, 3);
+draw_line_width(menuX + 290, menuY + 350, menuX + 290, menuY - 150, 3);
+draw_line_width(menuX - 290, menuY + 350, menuX + 290, menuY + 350, 3);
+draw_line_width(menuX - 290, menuY - 150, menuX + 290, menuY - 150, 3);
+
+ 
 draw_set_font(f_2);
 draw_set_halign(fa_center);
-draw_set_color(c_teal);
+draw_set_color(make_color_rgb(0, 170, 165));
 draw_text(menuX, menuY + titleHeight, "Harpoon' n' Fishin'");
 
 // ------ drawing menu buttons
@@ -38,10 +50,11 @@ draw_text(menuX, menuY + titleHeight, "Harpoon' n' Fishin'");
 var i = 0; // "i" will be used to loop through the button array 
 
 repeat(buttons){
-	draw_set_font(f_1);         // f_1 the name i chose for a custom font that can be changed, font size is 70 in Gabriola
-	draw_set_halign(fa_center); // centers the text 
-	draw_set_color(c_teal);     // sets the color of the font 
-	if(menuIndex == i)	{ draw_set_color(c_black); }
+	draw_set_font(f_1);
+	draw_set_halign(fa_center);
+	draw_set_color(make_color_rgb(0, 100, 95));
+	
+	if(menuIndex == i)	{ draw_set_color(make_color_rgb(0, 170, 165)); }
 	draw_text(menuX, menuY + (buttonHeight * i) , button[i]);
 	i++
 }
