@@ -1,0 +1,35 @@
+//flips player for left and right
+if (move_left){
+	sprite_index = spr_character_left;
+	image_angle = -180;
+	image_xscale = -.099;
+	image_yscale = -.099;
+	draw_sprite(spr_character_left, -1, sprite_width, sprite_height)
+	
+}
+if  (move_right){
+	sprite_index = spr_character_right;
+	image_angle = 0;
+	image_xscale = .099;
+	image_yscale = .099;
+	draw_sprite(spr_character_left, -1, sprite_width, sprite_height)
+}
+
+
+// idle player
+if (keyboard_lastkey == (ord("A"))) { 
+	sprite_index = spr_character_left;
+}
+
+	
+
+
+//shooting
+if(keyboard_check_pressed(vk_space)){
+	var inst = instance_create_layer(x,y,"instances", obj_harpoon);
+	inst.direction = image_angle;
+	inst.obj_harpoon = image_angle;
+	if (sprite_index == spr_character_left){
+		obj_harpoon.image_angle = -180;
+	}
+}
