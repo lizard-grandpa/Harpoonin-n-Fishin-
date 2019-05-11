@@ -1,3 +1,8 @@
+// ******* X AND Y COORDINATES ******* 
+/*
+obj_menu = (512, 224)
+*/
+
 // ******* CREATE EVENT ******
 menuX = x;
 menuY = y;
