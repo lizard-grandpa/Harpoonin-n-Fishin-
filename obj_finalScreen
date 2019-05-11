@@ -1,0 +1,56 @@
+// ******* CREATE EVENT ******
+
+// the x should be , the y should be , and the object should be placed on rm_end
+
+menuX = x;
+menuY = y;
+
+buttonHeight = 64;
+titleHeight = -150;
+
+button[0] = "Final Score: ";
+button[1] = score;
+
+buttons = array_length_1d(button);
+
+menuIndex = 0;
+lastSelected = 0;
+yAdjust = -100;
+
+x1 = 195;
+y1 = 275;
+x2 = 195;
+y2 = -25;
+
+
+
+
+// ******* DRAW EVENT ******
+
+instance_deactivate_object(obj_pause);
+
+var i = 0;
+
+draw_set_colour(c_black);
+draw_set_alpha(0.75);
+draw_rectangle(menuX - x1, menuY + y1, menuX + x2, menuY - y2, false);
+draw_set_alpha(1);
+
+
+
+draw_set_color(make_color_rgb(0, 170, 165));
+draw_line_width(menuX - x1, menuY + y1, menuX - x1, menuY - y2, 3);
+draw_line_width(menuX + x2, menuY + y1, menuX + x2, menuY - y2, 3);
+draw_line_width(menuX - x1, menuY + y1, menuX + x2, menuY + y1, 3);
+draw_line_width(menuX - x1, menuY - y2, menuX + x2, menuY - y2, 3);
+
+repeat(buttons){
+	draw_set_font(f_1);
+	draw_set_halign(fa_center);
+	draw_set_color(make_color_rgb(0, 170, 165));
+	if(menuIndex == i)	{ draw_set_color(make_color_rgb(0, 170, 165)); }
+	draw_text(menuX, menuY + (buttonHeight * i) + 50, button[i]);
+	i++
+}
+
+draw_text_transformed_colour(menuX, menuY + (buttonHeight * i + 72) + yAdjust + 100, "please press 'R' to restart", .75, .75, 0, make_color_rgb(0, 170, 165), make_color_rgb(0, 170, 165), make_color_rgb(0, 170, 165), make_color_rgb(0, 170, 165), .75);
