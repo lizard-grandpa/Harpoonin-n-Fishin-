@@ -1,0 +1,113 @@
+
+
+// ******** CREATE EVENT ********
+
+gameIsPaused = false;
+global.allObjects[0, 0] = noone;
+
+pauseX = x;
+pauseY = y;
+buttonHeight = 64;
+titleHeight = -150;
+yAdjust = -100;
+rectAdjustX = 2000;
+rectAdjustY = -1000;
+
+button[0] = "Options";
+button[1] = "Exit to menu";
+button[2] = "Quit";
+
+buttons = array_length_1d(button);
+
+pauseIndex = 0;
+lastSelected = 0;
+
+// ******** STEP EVENT ********
+
+menuMove = keyboard_check_pressed(vk_down) - keyboard_check_pressed(vk_up);
+
+pauseIndex += menuMove;
+if(pauseIndex < 0)				{ pauseIndex = buttons - 1; }
+if(pauseIndex > (buttons - 1))	{ pauseIndex = 0; }
+
+// ******** DRAW GUI EVENT ********
+
+/// @description While game is paused
+if(gameIsPaused)
+{
+	
+	draw_set_colour(c_black);
+	draw_set_alpha(0.75);
+	draw_rectangle(pauseX - 200, pauseY + 300, pauseX + 200, pauseY - 300, false);
+	draw_set_alpha(1);
+	
+	draw_set_color(make_color_rgb(0, 170, 165));
+	draw_line_width(pauseX - 200, pauseY + 300, pauseX - 200, pauseY - 300, 3);
+	draw_line_width(pauseX + 200, pauseY + 300, pauseX + 200, pauseY - 300, 3);
+	draw_line_width(pauseX - 200, pauseY + 300, pauseX + 200, pauseY + 300, 3);
+	draw_line_width(pauseX - 200, pauseY - 300, pauseX + 200, pauseY - 300, 3);
+
+	draw_set_font(f_2);
+	draw_set_halign(fa_center);
+	// darker teal RGB rgb(0, 100, 95)
+	
+	draw_set_color(make_color_rgb(0, 170, 165));
+	draw_text(pauseX, pauseY + titleHeight + yAdjust, "Paused");
+	draw_set_color(make_color_rgb(0, 100, 95));
+
+var i = 0;
+
+repeat(buttons){
+	draw_set_font(f_1);
+	draw_set_halign(fa_center);
+	draw_set_color(make_color_rgb(0, 100, 95));
+	if(pauseIndex == i)	{ draw_set_color(make_color_rgb(0, 170, 165)); }
+	draw_text(pauseX, pauseY + (buttonHeight * i)  + yAdjust, button[i]);
+	i++
+}
+
+	draw_set_font(f_1);
+	draw_set_halign(fa_center);
+	draw_set_color(c_white);
+	draw_text_transformed_colour(pauseX, pauseY + (buttonHeight * i + 72) + yAdjust, "press ESC to return to game", .75, .75, 0, make_color_rgb(0, 170, 165), make_color_rgb(0, 170, 165), make_color_rgb(0, 170, 165), make_color_rgb(0, 170, 165), .75);
+
+
+}
+
+
+// ******** KEY PRESS - ENTER EVENT ********
+
+switch(pauseIndex){
+	case 0:
+		instance_activate_object(obj_options);
+		obj_options.visible = true;
+		obj_pause.visible = false;
+		break;
+	case 1:
+		room_goto(rm_menu);
+		instance_destroy(obj_pause);
+		allObjects = 0;
+		gameIsPaused = false;
+		break;
+	case 2: 
+		game_end();
+		break;
+}
+
+
+
+// ******** KEY PRESS - ESCAPE EVENT ********
+
+
+if (gameIsPaused == false){
+	var offset = 0;
+	
+	instance_deactivate_all(true);
+	gameIsPaused = true;
+}
+else{
+	instance_activate_all();
+	gameIsPaused = false;
+	
+	allObjects = 0;
+}
