@@ -1,0 +1,16 @@
+
+// STEP EVENT //
+
+if (image_alpha < 1){
+	image_alpha -= .01;
+}
+
+// WHEN OBJECT COLLIDES WITH THE PLAYER OBJECT //
+
+image_alpha += -.01;
+global.scoreCount = global.scoreCount + 50
+if (image_alpha <= 0)
+
+{
+	instance_destroy();
+}
