@@ -1,6 +1,7 @@
 // ******* X AND Y COORDINATES ******* 
 /*
-obj_menu = (512, 224)
+rm_menu:
+	obj_menu = (512, 224)
 */
 
 // ******* CREATE EVENT ******
