@@ -85,6 +85,13 @@ if(yPosition !=0){
 x += xPosition;
 y += yPosition;
 
+//switching sprite so it faces left
+if (keyboard_check(ord("A"))) {
+    sprite_index = spr_character_left;
+}
+else {
+    sprite_index = spr_character_right;
+}
 
 // idle player
 if (keyboard_lastkey == (ord("A"))) { 
