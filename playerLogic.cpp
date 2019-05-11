@@ -84,3 +84,9 @@ if(yPosition !=0){
 // ------- UPDATE USER MOVEMENT
 x += xPosition;
 y += yPosition;
+
+
+// idle player
+if (keyboard_lastkey == (ord("A"))) { 
+	sprite_index = spr_character_left;
+}
