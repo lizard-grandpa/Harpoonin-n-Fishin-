@@ -1,4 +1,8 @@
-
+// ******* X AND Y COORDINATES ******* 
+/*
+rm_game:
+	obj_pause = (512, 364)
+*/
 
 // ******** CREATE EVENT ********
 
