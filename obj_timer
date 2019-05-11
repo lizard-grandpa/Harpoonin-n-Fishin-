@@ -9,7 +9,7 @@ global.minutes = 5;
 
 global.seconds -= 0.7/room_speed;
 
-if (global.seconds > 0) and (global.seconds < 0.1) and ((global.minutes > 1)){
+if (global.seconds > 0) and (global.seconds < 0.1) and ((global.minutes >= 1)){
 	global.seconds = 60;
 	global.minutes -= 1;
 }
