@@ -1,9 +1,9 @@
 // ***** CREATE EVENT ****
 imageSpeed = .1;
-oilSpillSize = 3;
+oilSpillSize = 2;
 fadeOilSpill = false;
 
-alarm[1] = room_speed * 4; // 4 seconds
+alarm[1] = room_speed * 2; // 2 seconds
 
 // ***** STEP EVENT *****
 if(image_xscale < oilSpillSize){
@@ -25,3 +25,7 @@ if(fadeOilSpill == -1){
 }
 // **** ALARM 1 ****
 fadeOilSpill = true;
+
+// **** DRAW GUI EVENT ****
+draw_sprite_ext(spr_oil_spill, 0, obj_oil_barrel.x, obj_oil_barrel.y, image_xscale, image_yscale, 0, c_white,image_alpha);
+ 
