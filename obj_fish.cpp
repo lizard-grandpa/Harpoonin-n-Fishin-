@@ -25,7 +25,9 @@ if(fishDirection == 1 ){
 }
 
 alarm[1] = 1; // fish movement alarm 
+
 // **** STEP EVENT ****
+
 // ------- CHECKS PLAYER DISTANCE TO FISH 
 if(distance_to_object(instance_nearest(x,y,obj_player)) <= 25){
 	move_towards_point(instance_nearest(x,y,obj_border).x, instance_nearest(x,y,obj_border).y,0.95);	
