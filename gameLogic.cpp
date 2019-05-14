@@ -1,7 +1,6 @@
 
 // *********** CREATE EVENT **********
 randomize();      // ensures "random" functions appear random at every run of the game kinda like "srand(time(0));" in c++
-room_goto_next(); // goes to the next room of the game 
 
 score = 0;
 global.seconds = 10;
@@ -20,15 +19,6 @@ if (global.seconds > 0) and (global.seconds < 0.1) and ((global.minutes >= 1)){
 if ((global.seconds < 1) and (global.minutes == 0)){
 	room_goto(rm_end);
 	instance_destroy(game);
-}
-
-// ---- creating fish instances
-var fish_count = instance_number(obj_fish);
-fish_x = choose(-120, 950);
-
-if(fish_count < 10)
-{ 
-	instance_create_depth(fish_x, irandom_range(0, 765), 100, obj_fish); // x, y, depth, object
 }
 
 // *********** DRAW GUI EVENT **********
