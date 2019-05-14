@@ -36,6 +36,8 @@ if(yPosition !=0){
 if(barrel_collision){ 
 	instance_create_depth(view_xport[0]+ 200, view_yport[0]- 500, -100, obj_oil_spill);
 	instance_destroy(obj_harpoon);
+	audio_play_sound(Barrel, 10, false);
+	
 }
 // **** COLLISION EVENT W/ OBJ_FISH ****
 score += 10;
