@@ -26,6 +26,10 @@ menuMove = keyboard_check_pressed(vk_down) - keyboard_check_pressed(vk_up);
 if (room == rm_menu){
 	instance_deactivate_object(obj_options);
 }
+if (room == rm_end){
+	instance_deactivate_object(obj_options);
+}
+
 pauseIndex += menuMove;
 if(pauseIndex < 0)				{ pauseIndex = buttons - 1; }
 if(pauseIndex > (buttons - 1))	{ pauseIndex = 0; }
@@ -83,4 +87,17 @@ repeat(buttons){
 draw_set_font(f_1);
 draw_set_halign(fa_center);
 draw_set_color(c_white);
-draw_text_transformed_colour(pauseX, pauseY + (buttonHeight * i + 100), "press ENTER to return", .75, .75, 0, make_color_rgb(0, 170, 165), make_color_rgb(0, 170, 165), make_color_rgb(0, 170, 165), make_color_rgb(0, 170, 165), .75);
+draw_text_transformed_colour(pauseX, pauseY + (buttonHeight * i + 100), "press ENTER to return", .75, .75, 0, make_color_rgb(0, 170, 165), make_color_rgb(0, 170, 165), make_color_rgb(0, 170, 165), make_color_rgb(0, 170, 165), 0.75);
+
+draw_set_color(c_black);
+draw_rectangle(rectX, rectY, rectX2, rectY2, false);
+draw_set_alpha(1);
+
+
+draw_set_color(make_color_rgb(0, 170, 165));
+draw_line_width(rectX, rectY, rectX, rectY2, 3);
+draw_line_width(rectX2, rectY, rectX2, rectY2, 3);
+draw_line_width(rectX, rectY, rectX2, rectY, 3);
+draw_line_width(rectX, rectY2, rectX2, rectY2, 3);
+
+draw_text_transformed_colour(rectX + 300, rectY, "UNDER CONSTRUCTION", 1, 1, 0, make_color_rgb(0, 180, 175), make_color_rgb(0, 180, 175), make_color_rgb(0, 180, 175), make_color_rgb(0, 180, 175), 1);
