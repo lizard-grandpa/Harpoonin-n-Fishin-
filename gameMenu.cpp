@@ -18,6 +18,26 @@ button[3] = "Exit";
 
 buttons = array_length_1d(button); // store the length of the 'button' array 
 
+punSelect = 0;
+pun[0] = "Are you squidding me?";
+pun[1] = "Whale, whale, whale...what do we have here?";
+pun[2] = "Never gonna give you up, never gonna let you drown.";
+pun[3] = "How do you tuna fish? Adjust their scales.";
+pun[4] = "Why are fish so smart? They live in schools.";
+pun[5] = "I'm hooked!";
+pun[6] = "Create your own fish pun, don't leave it to salmon else.";
+pun[7] = "I think you're fintastic.";
+pun[8] = "You're so sofishticated!";
+pun[9] = "How do you make an octopus laugh? Give it ten-tickles.";
+pun[10] = "Why did the shopkeeper throw the clams out? They were past their shell-by-date.";
+pun[11] = "Why is our game incomplete? We kept having to scale back ;^)";
+pun[12] = "Why is our game incomplete? We kept having to scale back ;^)";
+pun[13] = "Why is our game incomplete? We kept having to scale back ;^)";
+pun[14] = "Why is our game incomplete? We kept having to scale back ;^)";
+pun[15] = "Why is our game incomplete? We kept having to scale back ;^)";
+
+punSelect = irandom_range(1,15);
+
 menuIndex = 0;
 lastSelected = 0; 
 
@@ -65,10 +85,21 @@ repeat(buttons){
 	i++
 }
 
+draw_set_colour(c_black);
+draw_set_alpha(0.75);
+draw_rectangle(0, 625, room_width, 695, false);
+draw_set_alpha(1);
+
+draw_set_alpha(1);
+draw_text_transformed_colour(512, 224 + 400, pun[punSelect], 0.7, 0.7, 0, make_color_rgb(0, 255, 247), make_color_rgb(0, 255, 247), make_color_rgb(0, 255, 257), make_color_rgb(0, 255, 247), .75);
+
+
+
 // ******** KEY PRESS EVENT - ENTER KEY ********
 switch(menuIndex){
 	case 0:
 		room_goto(rm_game); // will go directly to rm_demo after
+		audio_play_sound(s_mainTheme, 1, true);
 		break;
 	case 1: 
 		room_goto(rm_skinsStore);
