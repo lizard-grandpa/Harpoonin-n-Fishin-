@@ -107,9 +107,11 @@ if (gameIsPaused == false){
 	var offset = 0;
 	
 	instance_deactivate_all(true);
+	audio_play_sound(Pause, 10 , false)
 	gameIsPaused = true;
 }
 else{
+	audio_play_sound(Pause, 10 , false)
 	instance_activate_all();
 	gameIsPaused = false;
 	
